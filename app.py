@@ -49,7 +49,7 @@ def calculate_motion(v0, angle, range_given=False, r=0):
 
 # Streamlit app interface
 st.title("Mr. Kolb's Dynamics Simulator")
-st.header("Mr. Kolb's Dynamics Simulator")
+st.image("https://github.com/kolbm/projectile-motion/blob/main/logo-projectile.jpg?raw=true")
 
 # Inputs
 v0 = st.number_input("Enter initial velocity (m/s)", min_value=0.0, value=50.0)
@@ -81,4 +81,3 @@ if st.button("Simulate"):
     st.download_button(label="Download CSV", data=csv, file_name="projectile_data.csv", mime="text/csv")
 
 # Footer with Dunellen logo (replace with actual image path)
-st.image("https://github.com/kolbm/projectile-motion/blob/main/logo-projectile.jpg?raw=true")
