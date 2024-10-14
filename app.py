@@ -81,4 +81,4 @@ if st.button("Simulate"):
     st.download_button(label="Download CSV", data=csv, file_name="projectile_data.csv", mime="text/csv")
 
 # Footer with Dunellen logo (replace with actual image path)
-st.image("path_to_dunellen_logo.png", use_column_width=True)
+st.image("https://github.com/kolbm/projectile-motion/blob/main/logo-projectile.jpg?raw=true")
