@@ -34,6 +34,21 @@ def calculate_motion(v0, angle, h0=0):
     ax = np.zeros_like(t)
     ay = np.full_like(t, -g)
 
+    # Calculating maximum height
+    t_peak = v0y / g  # Time to reach maximum height
+    max_height = h0 + v0y * t_peak - 0.5 * g * t_peak**2
+    
+    # Calculating range
+    range_val = v0x * t_flight
+
+    # Final velocity at impact
+    v_final_x = v0x  # Horizontal velocity remains constant
+    v_final_y = v0y - g * t_flight  # Vertical velocity at the moment of impact
+    v_final = np.sqrt(v_final_x**2 + v_final_y**2)  # Magnitude of final velocity
+
+    # Angle of impact
+    angle_impact = np.degrees(np.arctan2(v_final_y, v_final_x))
+
     # Create a DataFrame with results
     data = {
         "Time (s)": t,
@@ -46,7 +61,7 @@ def calculate_motion(v0, angle, h0=0):
     }
     df = pd.DataFrame(data)
     
-    return df
+    return df, t_flight, range_val, max_height, v_final, angle_impact
 
 # Streamlit app interface
 st.title("Mr. Kolb's Projectile Motion Simulator")
@@ -63,7 +78,14 @@ else:
 
 # Calculate and display results
 if st.button("Simulate"):
-    df = calculate_motion(v0, angle, h0)
+    df, t_flight, range_val, max_height, v_final, angle_impact = calculate_motion(v0, angle, h0)
+
+    # Displaying the key results
+    st.write(f"**Time in the air:** {t_flight:.2f} seconds")
+    st.write(f"**Range:** {range_val:.2f} meters")
+    st.write(f"**Maximum Height:** {max_height:.2f} meters")
+    st.write(f"**Final Velocity:** {v_final:.2f} m/s")
+    st.write(f"**Angle of Impact:** {angle_impact:.2f} degrees")
 
     # Plotting the trajectory
     fig, ax = plt.subplots()
