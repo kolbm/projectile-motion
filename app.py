@@ -64,7 +64,7 @@ def calculate_motion(v0, angle, h0=0):
     return df, t_flight, range_val, max_height, v_final, angle_impact
 
 # Streamlit app interface
-st.title("Mr. Kolb's Projectile Motion Simulator")
+st.title("Mr. Kolb's Projectile Motion App")
 st.image("https://github.com/kolbm/projectile-motion/blob/main/logo-projectile.jpg?raw=true")
 
 # Inputs
